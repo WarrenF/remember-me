@@ -1,6 +1,6 @@
 {
   "name": "remember-me",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "No nonsense in-memory cache system for node",
   "author": "Warren Fitzpatrick",
   "license": "GPL",
