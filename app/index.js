@@ -58,6 +58,8 @@ cache.getAll = cb => {
   cache.mget([...store.keys()], cb)
 }
 
+cache.getAllKeys = cb => cb(null, [...store.keys()])
+
 cache.get = (key, cb) => cb(null, (store.get(key) || {}).data)
 
 cache.setMaxSize = size => {

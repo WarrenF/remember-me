@@ -119,13 +119,20 @@ describe('Cache', () => {
       })
     })
 
-    it('Allows you to fetch all keys at once', async () => {
+    it('Allows you to fetch all data at once', async () => {
       cache.getAll((err, data) => {
         expect(err).to.equal(null)
         expect(data).to.deep.equal([
           { someStuff: true },
           { someOtherStuff: true }
         ])
+      })
+    })
+
+    it('Allows you to fetch all keys from the cache', async () => {
+      cache.getAllKeys((err, data) => {
+        expect(err).to.equal(null)
+        expect(data).to.deep.equal(['test', 'test2'])
       })
     })
 
