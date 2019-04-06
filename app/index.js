@@ -6,12 +6,12 @@ cache.cacheSize = 0
 cache.cacheEntries = 0
 cache.cacheCharacterLimit = 100 * 1024 * 1024 // Default max size stringified character limit
 
-cache.info = cb => {
-  return cb(null, {
+cache.info = () => {
+  return {
     cacheEntries: cache.cacheEntries,
     cacheSize: cache.cacheSize,
     cacheCharacterLimit: cache.cacheCharacterLimit
-  })
+  }
 }
 
 cache.set = (key, val, duration = null, cb = () => {}) => {

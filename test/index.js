@@ -13,10 +13,7 @@ describe('Cache', () => {
   describe('Can store cache', () => {
     it('Allows you add a cache item', () => {
       cache.set('test', { someStuff: true })
-      cache.info((err, data) => {
-        expect(err).to.equal(null)
-        expect(data).to.deep.equal(getInfo(104857600, 1, 18))
-      })
+      expect(cache.info()).to.deep.equal(getInfo(104857600, 1, 18))
     })
 
     it('Allows you to fetch a single key from cache', async () => {
@@ -28,18 +25,11 @@ describe('Cache', () => {
 
     it('Allows you to delete items by key', () => {
       cache.del('test')
-      cache.info((err, data) => {
-        expect(err).to.equal(null)
-        expect(data).to.deep.equal(getInfo(104857600, 0, 0))
-      })
+      expect(cache.info()).to.deep.equal(getInfo(104857600, 0, 0))
     })
 
     it('Does not blow up when you try to delete something that does not exist', () => {
       cache.del('testingz')
-      cache.info((err, data) => {
-        expect(err).to.equal(null)
-        expect(data).to.deep.equal(getInfo(104857600, 0, 0))
-      })
     })
 
     it('Does not blow up when you try to set a max size without passing anything in', () => {
@@ -72,28 +62,17 @@ describe('Cache', () => {
 
     it('Allows you to add an item with an expiry', () => {
       cache.set('test', { someStuff: true }, 250, () => {})
-      cache.info((err, data) => {
-        expect(err).to.equal(null)
-        expect(data).to.deep.equal(getInfo(104857600, 1, 18))
-      })
+      expect(cache.info()).to.deep.equal(getInfo(104857600, 1, 18))
     })
 
     it('Deletes the keys that have an expiry', async () => {
       await new Promise(resolve => {
         setTimeout(() => {
-          cache.info((err, data) => {
-            // The object should still in cache at this point
-            expect(err).to.equal(null)
-            expect(data).to.deep.equal(getInfo(104857600, 1, 18))
-          })
+          expect(cache.info()).to.deep.equal(getInfo(104857600, 1, 18))
         }, 100)
         setTimeout(() => {
-          cache.info((err, data) => {
-            // The object should have expired at this point
-            expect(err).to.equal(null)
-            expect(data).to.deep.equal(getInfo(104857600, 0, 0))
-            resolve()
-          })
+          expect(cache.info()).to.deep.equal(getInfo(104857600, 0, 0))
+          resolve()
         }, 251)
       })
     })
