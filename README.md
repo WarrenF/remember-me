@@ -18,13 +18,13 @@ This example will set some cache that will automatically delete itself after 10 
 In order to fetch previously stored items from the cache you must invoke the cache.get function.  This function accepts 2 parameters, the first is the key you want to fetch which must be provided as a string. The second is a callback which is required, please see the below example:
 ```cache.get('your-key', (err, data) => { console.log(data) })```
 
-## Get multiple items, callback data is return as an array of data
+### Get multiple items, callback data is return as an array of data
 `cache.mget(['key-one', 'key-two', 'key-three'], (err, data) => { console.log(data) })`
 
-## Get all item data, callback data is return as an array of data
+### Get all item data, callback data is return as an array of data
 `cache.getAll((err, data) => { console.log(data) })`
 
-## Get all item keys, callback data is return as an array of strings
+### Get all item keys, callback data is return as an array of strings
 `cache.getAllKeys((err, data) => { console.log(data) })`
 
 ### Delete item
